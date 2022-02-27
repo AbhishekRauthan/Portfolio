@@ -16,6 +16,11 @@ const theme = extendTheme({
     brandBody: "'Nunito', sans-serif",
   },
   breakpoints,
+  colors: {
+    brandSky400: "#38bdf8",
+    brandBlue500: "#3b82f6",
+    brandCyan700: "#0e7490",
+  },
 });
 
 export default theme;
