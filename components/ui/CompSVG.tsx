@@ -1,6 +1,10 @@
-import { ComponentWithAs, Icon, IconProps, Text } from "@chakra-ui/react";
+import {
+  ComponentWithAs,
+  Icon,
+  IconProps,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import React from "react";
 
 const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
   return (
@@ -17,8 +21,8 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           stroke="url(#paint0_linear_0_1)"
           strokeWidth="0.9"
           initial={{
-            strokeDasharray: 408,
-            strokeDashoffset: 408,
+            strokeDasharray: 409,
+            strokeDashoffset: 409,
           }}
           transition={{
             duration: 3,
@@ -41,8 +45,8 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           stroke="url(#paint1_linear_0_1)"
           strokeWidth="0.7"
           initial={{
-            strokeDasharray: 352,
-            strokeDashoffset: 352,
+            strokeDasharray: 353,
+            strokeDashoffset: 353,
           }}
           transition={{
             duration: 3,
@@ -63,8 +67,8 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           stroke="url(#paint2_linear_0_1)"
           strokeWidth="0.7"
           initial={{
-            strokeDasharray: 16,
-            strokeDashoffset: 16,
+            strokeDasharray: 17,
+            strokeDashoffset: 17,
           }}
           transition={{
             duration: 3,
@@ -83,8 +87,8 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           stroke="url(#paint3_linear_0_1)"
           strokeWidth="0.9"
           initial={{
-            strokeDasharray: 108,
-            strokeDashoffset: 108,
+            strokeDasharray: 109,
+            strokeDashoffset: 109,
           }}
           transition={{
             duration: 3,
@@ -107,8 +111,8 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           stroke="url(#paint4_linear_0_1)"
           strokeWidth="0.7"
           initial={{
-            strokeDasharray: 168,
-            strokeDashoffset: 168,
+            strokeDasharray: 169,
+            strokeDashoffset: 169,
           }}
           transition={{
             duration: 3,
@@ -132,7 +136,10 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#3CC3FF" />
-          <stop offset="1" stopColor="#3A91F7" />
+          <stop
+            offset="1"
+            stopColor={useColorModeValue("#3b82f6", "#0e7490")}
+          />
         </linearGradient>
         <linearGradient
           id="paint1_linear_0_1"
@@ -143,7 +150,10 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#3CC3FF" />
-          <stop offset="1" stopColor="#3A91F7" />
+          <stop
+            offset="1"
+            stopColor={useColorModeValue("#3b82f6", "#0e7490")}
+          />
         </linearGradient>
         <linearGradient
           id="paint2_linear_0_1"
@@ -154,7 +164,10 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#3CC3FF" />
-          <stop offset="1" stopColor="#3A91F7" />
+          <stop
+            offset="1"
+            stopColor={useColorModeValue("#3b82f6", "#0e7490")}
+          />
         </linearGradient>
         <linearGradient
           id="paint3_linear_0_1"
@@ -165,7 +178,10 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#3CC3FF" />
-          <stop offset="1" stopColor="#3A91F7" />
+          <stop
+            offset="1"
+            stopColor={useColorModeValue("#3b82f6", "#0e7490")}
+          />
         </linearGradient>
         <linearGradient
           id="paint4_linear_0_1"
@@ -176,7 +192,10 @@ const CompSVG: ComponentWithAs<"svg", IconProps> = ({ ...props }) => {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#3CC3FF" />
-          <stop offset="1" stopColor="#3A91F7" />
+          <stop
+            offset="1"
+            stopColor={useColorModeValue("#3b82f6", "#0e7490")}
+          />
         </linearGradient>
       </defs>
     </Icon>
