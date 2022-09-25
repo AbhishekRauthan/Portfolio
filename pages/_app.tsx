@@ -10,12 +10,15 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
     <>
       <ChakraProvider theme={theme}>
         <BaseStyles />
-        <Layout>
-          <AnimatePresence exitBeforeEnter initial={false}>
+        <Layout path={router.asPath}>
+          <AnimatePresence>
             <motion.main
               key={router.route}
               initial="pageInitial"
               animate="pageAnimate"
+              transition={{
+                duration: 1,
+              }}
               variants={{
                 pageInitial: {
                   opacity: 0,
