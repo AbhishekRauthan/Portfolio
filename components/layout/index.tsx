@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import NextLink from "next/link";
 import NextHead from "next/head";
 import {
@@ -14,26 +13,21 @@ import {
   useColorModeValue,
   useColorMode,
   useTheme,
-  Text,
   Img,
 } from "@chakra-ui/react";
 import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { IoLogoGithub } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { ImgContainer } from "./imgStyles";
-
-const HamburberMenuIcon = () => (
-  <HamburgerIcon
-    boxSize="7"
-    color={useColorModeValue("blue.600", "cyan.600")}
-  />
-);
+import { useGradient, useHamburgerGradient } from "@components/theme";
 
 const LinkItem: FC<{
   href: string;
-}> = ({ href, children }) => {
-  const theme = useTheme();
+  path: string;
+}> = ({ href, children, path }) => {
+  const active = path === href;
+  console.log(`${href}: ${active}`);
 
   return (
     <NextLink href={href} passHref>
@@ -41,13 +35,13 @@ const LinkItem: FC<{
         as="a"
         fontFamily="brandTitle"
         fontSize={{ base: "xl", lg: "2xl" }}
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        bgImage={active ? useGradient() : "white"}
+        bgClip={active ? "text" : undefined}
         _hover={{
           backgroundClip: "text",
           transform: "scale(1.25)",
-          backgroundImage: useColorModeValue(
-            `linear-gradient(to right, ${theme?.colors?.brandSky400}, ${theme?.colors?.brandBlue500})`,
-            `linear-gradient(to right, ${theme?.colors?.brandSky400}, ${theme?.colors?.brandCyan700})`
-          ),
+          backgroundImage: useGradient(),
           textColor: "transparent",
         }}
         _focus={{
@@ -60,7 +54,12 @@ const LinkItem: FC<{
   );
 };
 
-const Layout: NextPage = ({ children }) => {
+type Props = {
+  children: ReactNode;
+  path: string;
+};
+
+const Layout = ({ children, path }: Props) => {
   const { toggleColorMode } = useColorMode();
   const theme = useTheme();
 
@@ -90,14 +89,19 @@ const Layout: NextPage = ({ children }) => {
             <Menu isLazy aria-label="Menu" closeOnBlur>
               <MenuButton
                 as={IconButton}
-                icon={<HamburberMenuIcon />}
-                bgColor={useColorModeValue("white", "gray.800")}
+                icon={
+                  <HamburgerIcon
+                    boxSize="7"
+                    color={useColorModeValue("blue.600", "cyan.600")}
+                  />
+                }
+                bgColor={useHamburgerGradient()}
                 border="none"
                 _active={{
-                  backgroundColor: useColorModeValue("white", "gray.800"),
+                  backgroundColor: useHamburgerGradient(),
                 }}
                 _selected={{
-                  backgroundColor: useColorModeValue("white", "gray.800"),
+                  backgroundColor: useHamburgerGradient(),
                 }}
               />
               <MenuList>
@@ -122,20 +126,16 @@ const Layout: NextPage = ({ children }) => {
           </Box>
           {/* Menu Ends here */}
           <NextLink href="/" passHref>
-            <Link _hover={{}}>
-              <Heading
-                fontFamily="brandHeading"
-                textColor="transparent"
-                bgClip="text"
-                fontSize={{ base: "4xl", md: "5xl" }}
-                bgGradient={useColorModeValue(
-                  "linear(to-r, brandSky400, brandBlue500)",
-                  "linear(to-r, brandSky400, brandCyan700)"
-                )}
-              >
-                AR
-              </Heading>
-            </Link>
+            <Heading
+              as="a"
+              fontFamily="brandHeading"
+              textColor="transparent"
+              bgClip="text"
+              fontSize={{ base: "4xl", md: "5xl" }}
+              bgGradient={useGradient()}
+            >
+              AR
+            </Heading>
           </NextLink>
           {/* Links Start here */}
           <HStack
@@ -145,12 +145,16 @@ const Layout: NextPage = ({ children }) => {
             alignItems="center"
             spacing="10"
           >
-            <LinkItem href="/">About</LinkItem>
-            <LinkItem href="/projects">Projects</LinkItem>
-            <LinkItem href="https://github.com/AbhishekRauthan">
+            <LinkItem href="/" path={path}>
+              About
+            </LinkItem>
+            <LinkItem href="/projects" path={path}>
+              Projects
+            </LinkItem>
+            <LinkItem href="https://github.com/AbhishekRauthan" path={path}>
               Github
             </LinkItem>
-            <LinkItem href="https://github.com/AbhishekRauthan">
+            <LinkItem href="/resume" path={path}>
               Resume
             </LinkItem>
           </HStack>
@@ -198,35 +202,6 @@ const Layout: NextPage = ({ children }) => {
             marginX="auto"
           />
         </ImgContainer>
-      </Box>
-      <Box
-        marginTop={{ base: "8" }}
-        marginBottom={{ base: "16" }}
-        marginX="auto"
-        display="flex"
-        alignContent="baseline"
-        textAlign="center"
-        flexDirection={{ base: "column" }}
-      >
-        <Heading
-          as="h1"
-          paddingX="4"
-          fontFamily="brandTitle"
-          fontSize={{ base: "2xl" }}
-          fontWeight="bold"
-          letterSpacing={{ base: "wider" }}
-        >
-          Front-End Developer and a Data Science Enthusiast
-        </Heading>
-        <Text
-          fontFamily="brandBody"
-          fontSize={{ base: "xl" }}
-          marginY="7"
-          paddingX={{ base: "3" }}
-          letterSpacing={{ base: "wide" }}
-        >
-          I design and code beautifull solutions for the web
-        </Text>
       </Box>
       {children}
     </>
