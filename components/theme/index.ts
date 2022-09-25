@@ -34,3 +34,5 @@ const theme = extendTheme({
 });
 
 export default theme;
+
+export * from "./gradients"
