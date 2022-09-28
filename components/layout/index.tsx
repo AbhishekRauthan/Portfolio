@@ -14,13 +14,20 @@ import {
   useColorMode,
   useTheme,
   Img,
+  chakra,
+  shouldForwardProp,
 } from "@chakra-ui/react";
 import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { IoLogoGithub } from "react-icons/io5";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, isValidMotionProp, motion } from "framer-motion";
 import { FC, ReactNode } from "react";
 import { ImgContainer } from "./imgStyles";
 import { useGradient, useHamburgerGradient } from "@components/theme";
+
+const ChakraBox = chakra(motion.div, {
+  shouldForwardProp: (prop) =>
+    isValidMotionProp(prop) || shouldForwardProp(prop),
+});
 
 const LinkItem: FC<{
   href: string;
@@ -67,13 +74,36 @@ const Layout = ({ children, path }: Props) => {
     <>
       <NextHead>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Abhishek's Portfolio" />
+        <meta
+          name="description"
+          content="I design and code beautifull solutions for the web"
+        />
         <meta name="author" content="Abhishek Rauthan" />
         <meta property="og:site_name" content="Abhishek Rauthan" />
-        <meta name="og:title" content="Abhishek Rauthan" />
+        <meta
+          name="og:title"
+          content="Abhishek Rauthan | Front-End Developer | Data Science Enthusiast"
+        />
         <meta property="og:type" content="website" />
       </NextHead>
-      <Box as="header" width="100%">
+      <motion.header
+        style={{ width: "100%" }}
+        initial="pageInitial"
+        animate="pageAnimate"
+        transition={{
+          duration: 1,
+        }}
+        variants={{
+          pageInitial: {
+            opacity: 0,
+            translateY: 50,
+          },
+          pageAnimate: {
+            opacity: 1,
+            translateY: 0,
+          },
+        }}
+      >
         <HStack
           as="nav"
           display="flex"
@@ -118,7 +148,7 @@ const Layout = ({ children, path }: Props) => {
                 >
                   Profile
                 </MenuItem>
-                <NextLink passHref href="/projects">
+                <NextLink passHref href="/resume">
                   <MenuItem as={Link}>Resume</MenuItem>
                 </NextLink>
               </MenuList>
@@ -186,8 +216,25 @@ const Layout = ({ children, path }: Props) => {
             </motion.div>
           </AnimatePresence>
         </HStack>
-      </Box>
-      <Box paddingTop={{ base: "20" }}>
+      </motion.header>
+      <ChakraBox
+        paddingTop={{ base: "10" }}
+        initial="pageInitial"
+        animate="pageAnimate"
+        transition={{
+          duration: "1",
+        }}
+        variants={{
+          pageInitial: {
+            opacity: 0,
+            translateY: 50,
+          },
+          pageAnimate: {
+            opacity: 1,
+            translateY: 0,
+          },
+        }}
+      >
         <ImgContainer
           bgColor={useColorModeValue(
             theme?.colors?.brandBlue500,
@@ -202,7 +249,7 @@ const Layout = ({ children, path }: Props) => {
             marginX="auto"
           />
         </ImgContainer>
-      </Box>
+      </ChakraBox>
       {children}
     </>
   );
