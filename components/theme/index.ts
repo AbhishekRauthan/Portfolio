@@ -22,7 +22,7 @@ const theme = extendTheme({
   fonts: {
     brandHeading: "Major Mono Display, monospace",
     brandTitle: "IBM Plex Mono, monospace",
-    brandBody: "'Nunito', sans-serif",
+    brandBody: "'Ubuntu Mono', monospace",
   },
   breakpoints,
   colors: {
