@@ -218,7 +218,7 @@ const Layout = ({ children, path }: Props) => {
         </HStack>
       </motion.header>
       <ChakraBox
-        paddingTop={{ base: "10" }}
+        paddingTop={{ base: "10", md: "16", lg: "20" }}
         initial="pageInitial"
         animate="pageAnimate"
         transition={{
