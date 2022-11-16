@@ -1,10 +1,15 @@
 import {
   Box,
   useColorModeValue,
-  Text,
-  Heading,
+  Heading as ChakraHeading,
+  Text as ChakraText,
   VStack,
+  Divider,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
+import Heading from "@components/ui/Heading";
+import Text from "@components/ui/Text";
 import NextHead from "next/head";
 
 const HomePage = () => {
@@ -24,23 +29,8 @@ const HomePage = () => {
         textAlign="center"
         flexDirection={{ base: "column" }}
       >
-        <Heading
-          as="h1"
-          fontFamily="brandTitle"
-          fontSize={{ base: "2xl" }}
-          fontWeight="bold"
-          letterSpacing={{ base: "wider" }}
-        >
-          Front-End Developer and a Data Science Enthusiast
-        </Heading>
-        <Text
-          fontFamily="brandBody"
-          fontSize={{ base: "xl" }}
-          paddingX={{ base: "3" }}
-          letterSpacing={{ base: "wide" }}
-        >
-          I design and code beautifull solutions for the web
-        </Text>
+        <Heading>Front-End Developer and a Data Science Enthusiast</Heading>
+        <Text>I design and code beautifull solutions for the web</Text>
       </VStack>
       <VStack
         as="section"
@@ -48,7 +38,7 @@ const HomePage = () => {
         bgColor={useColorModeValue("brandBlue500", "brandCyan700")}
         marginTop={{ base: "0", lg: "16" }}
         paddingTop={{ base: "4", md: "7", lg: "16" }}
-        paddingBottom={{ base: "10",lg:"40" }}
+        paddingBottom={{ base: "10", lg: "40" }}
         textAlign={{ base: "center" }}
         display="flex"
         flexDirection="column"
@@ -57,12 +47,12 @@ const HomePage = () => {
         color="white"
         paddingX={{ base: "2", lg: "10" }}
       >
-        <Heading as="h1" fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}>
+        <ChakraHeading as="h1" fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}>
           Hi, I&apos;m Abhishek.{" "}
           <Box as="br" display={{ base: "inline-block", md: "none" }} /> Great
           to see you here!
-        </Heading>
-        <Text
+        </ChakraHeading>
+        <ChakraText
           as="p"
           fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
           fontFamily="brandBody"
@@ -73,7 +63,55 @@ const HomePage = () => {
           back-end technologies, based in New Delhi, India. I&apos;m passionate
           about learning new things and solving problems. I love coding and
           making cool things with it.
-        </Text>
+        </ChakraText>
+      </VStack>
+      <VStack
+        bgColor="white"
+        maxWidth="4xl"
+        marginX="auto"
+        rounded="2xl"
+        paddingY={{ base: "10" }}
+        marginTop={{ base: "-6", lg: "-32" }}
+        shadow="md"
+      >
+        <Heading>Skills</Heading>
+        <Divider
+          color="black"
+          borderBottomWidth="1.5px"
+          borderBottomColor="black"
+          width={{ base: "60%", md: "80%" }}
+        />
+        <Grid
+          templateColumns={{ base: "1", md: "repeat(3,1fr)" }}
+          marginX="auto"
+          gap={{ base: "5", md: "3" }}
+          paddingTop={{ base: "3", md: "5" }}
+        >
+          <GridItem as={VStack} spacing="3">
+            <Heading>FrontEnd</Heading>
+            <Text>React.JS</Text>
+            <Text>Next.JS</Text>
+            <Text>TaildwindCSS</Text>
+            <Text>ChakraUI</Text>
+            <Text>Material UI</Text>
+          </GridItem>
+          <GridItem as={VStack} spacing="3">
+            <Heading>BackEnd</Heading>
+            <Text>Express</Text>
+            <Text>Nest.JS</Text>
+            <Text>JWT</Text>
+            <Text>MongoDB</Text>
+            <Text>Postgres</Text>
+          </GridItem>
+          <GridItem as={VStack} spacing="3">
+            <Heading>Developer Tools</Heading>
+            <Text>JavaScript</Text>
+            <Text>TypeScript</Text>
+            <Text>Git</Text>
+            <Text>GraphQL</Text>
+            <Text>SQL</Text>
+          </GridItem>
+        </Grid>
       </VStack>
     </>
   );
